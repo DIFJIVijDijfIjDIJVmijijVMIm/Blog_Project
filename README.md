@@ -58,11 +58,3 @@ create table reply(
     foreign key (userId) references user (id)
 ) engine=InnoDB default charset=utf8;
 ```
-
-#### 3. Factory 세팅하기
-<https://blog.naver.com/codingspecialist/221681388208>
-
-#### 4. 부트스트랩 커스터마이징 HTML파일
-WebContent/ui_sample/**
-
-#### 5. 실행 영상
