@@ -1,0 +1,56 @@
+package com.cos.action.reply;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.cos.action.Action;
+import com.cos.models.Comment;
+import com.cos.util.Script;
+import com.google.gson.Gson;
+
+import dao.CommentDao;
+
+public class ReplyWriteAction implements Action {
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
+		String content = request.getParameter("content");
+
+		System.out.println("userId : " + userId);
+		System.out.println("boardId : " + boardId);
+		System.out.println("content : " + content);
+
+		Comment commentForm = new Comment();
+		commentForm.setUserId(userId);
+		commentForm.setBoardId(boardId);
+		commentForm.setContent(content);
+
+		CommentDao dao = new CommentDao();
+		int result = dao.save(commentForm);
+
+		if (result == 1) {
+			Comment comment = dao.findByMaxId();
+			comment.getResponseData().setStatusCode(1);
+			comment.getResponseData().setStatus("ok");
+			comment.getResponseData().setStatusMessage("Write is completed");
+
+			Gson gson = new Gson();
+			String commentJson = gson.toJson(comment);
+			System.out.println("commentJson : " + commentJson);
+
+			response.setContentType("applicaion/json; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print(commentJson);
+			out.flush();
+		} else {
+			Script.back(response);
+		}
+
+	}
+}

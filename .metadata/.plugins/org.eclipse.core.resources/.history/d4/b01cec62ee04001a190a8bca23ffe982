@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	
+</script>
+
+<script src="/blog/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	
+	<div id="img__wrap"></div>
+
+	<form action="uploadAction.jsp" method="POST" enctype="multipart/form-data">	<!-- MIME 타입 -->
+		username : <input type="text" name="username"/> <br/>
+		userProfile : <input id="img__imput" type="file" name="userProfile"/> <br/>
+		<input type="submit" value="전송"/>
+	</form>
+<script src="/blog/js/jquery-3.2.1.min.js"></script>
+<script>
+	$("#img__input").on();
+</script>
+</body>
+</html>

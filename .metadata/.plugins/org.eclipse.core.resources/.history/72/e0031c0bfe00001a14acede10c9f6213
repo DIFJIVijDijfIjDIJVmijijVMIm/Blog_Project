@@ -1,0 +1,5 @@
+package com.cos.action.comment;
+
+public class CommentWriteAction {
+
+}

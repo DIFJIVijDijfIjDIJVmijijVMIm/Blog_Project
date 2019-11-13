@@ -1,0 +1,12 @@
+package com.cos.test;
+
+public class OauthUser {
+	private int id;
+	
+	private String access_token;
+    private String refresh_token;
+    private String token_type;
+    private String expire_in;
+    
+    
+}

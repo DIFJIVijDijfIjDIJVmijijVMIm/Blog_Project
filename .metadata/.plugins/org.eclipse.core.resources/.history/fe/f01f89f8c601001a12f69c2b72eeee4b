@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%
+	//메일을 전송하자.
+	String to = request.getParameter("email");
+	String from = "myseongin@gmail.com";
+	
+	//정상=가만히 있는다. // 비정상=히스토리백
+%>    
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>이메일 주소 인증 메일이 전송되었습니다. 이메일에 들어가서 인증해주세요.</h1>
+</body>
+</html>

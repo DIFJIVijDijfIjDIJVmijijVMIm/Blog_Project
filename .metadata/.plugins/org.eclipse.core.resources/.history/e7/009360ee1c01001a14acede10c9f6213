@@ -1,0 +1,5 @@
+package com.cos.action.reply;
+
+public class ReplyFactory {
+
+}

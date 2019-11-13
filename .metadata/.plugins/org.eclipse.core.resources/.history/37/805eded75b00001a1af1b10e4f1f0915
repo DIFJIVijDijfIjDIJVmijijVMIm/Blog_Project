@@ -1,0 +1,58 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cos.models.Board;
+import com.cos.models.Comment;
+import com.cos.util.DBClose;
+
+public class CommentDao {
+
+	private Connection conn; // MySQL과 연결하기 위해 필요
+	private PreparedStatement pstmt; // Query 문을 작성 - 실행 하기 위해 필요
+	private ResultSet rs; // 결과를 보관할 커서
+
+	// ============================================FindByBoardId
+	public List<Comment> findByBoardId(int boardId) {
+
+		final String SQL = "SELECT * FROM comment WHERE boardId = ?";
+		
+		conn = DBConn.getConnection();
+
+		try {
+
+			List<Comment> comments = new ArrayList<>();
+			
+			pstmt = conn.prepareStatement(SQL);
+			
+			pstmt.setInt(1, boardId);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				Comment comment = new Comment();
+				comment.setId(rs.getInt("id"));
+				comment.setBoardId(rs.getInt("boardId"));
+				comment.setUserId(rs.getInt("userId"));
+				comment.setContent(rs.getString("content"));
+				comment.setCreateDate(rs.getTimestamp("createDate"));
+				
+				comments.add(comment);	//컬렉션에 comment 담기
+
+			}
+			return comments;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+
+		return null;
+	}
+
+}

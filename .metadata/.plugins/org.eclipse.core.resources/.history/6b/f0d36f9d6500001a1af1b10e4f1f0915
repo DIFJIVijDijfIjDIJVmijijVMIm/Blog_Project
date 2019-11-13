@@ -1,0 +1,44 @@
+package com.cos.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.cos.action.Action;
+import com.cos.action.board.BoardFactory;
+import com.cos.action.comment.CommentFactory;
+
+/*
+ * http://localhost:8000/blog/user?cmd=list
+ */
+@WebServlet("/comment") //원래는 /BoardController 편의를 위해서 변경
+public class CommentController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public CommentController() {
+		super();
+	}
+	//데이터를 화면에 뿌릴때는 GET방식, 데이터 변경사항이 있을 때는 POST방식 사용
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String cmd = request.getParameter("cmd");
+		if(cmd == null || cmd.equals("")) {
+			return;
+		}
+		Action action = CommentFactory.getAction(cmd);
+		if(action != null) {
+			action.execute(request, response);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.cos.action.reply;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.cos.action.Action;
+
+public class ReplyListAction implements Action{
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		BufferedReader in = request.getReader();
+		int commentId = Integer.parseInt(in.readLine());
+		
+		System.out.println("commentId : " + commentId);
+		
+	}
+}

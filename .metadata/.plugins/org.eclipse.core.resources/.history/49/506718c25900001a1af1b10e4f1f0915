@@ -1,0 +1,20 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cos.models.Board;
+import com.cos.util.DBClose;
+
+public class CommentDao {
+
+	private Connection conn; // MySQL과 연결하기 위해 필요
+	private PreparedStatement pstmt; // Query 문을 작성 - 실행 하기 위해 필요
+	private ResultSet rs; // 결과를 보관할 커서
+	
+		
+}

@@ -1,0 +1,16 @@
+package com.cos.action.reply;
+
+import com.cos.action.Action;
+import com.cos.action.comment.CommentDeleteAction;
+import com.cos.action.comment.CommentWriteAction;
+
+public class ReplyFactory {
+	public static Action getAction(String cmd) {
+		if(cmd.equals("delete")) {
+			return new CommentDeleteAction();
+		}else if(cmd.equals("write")) {
+			return new CommentWriteAction();
+		}
+		return null;
+	}
+}

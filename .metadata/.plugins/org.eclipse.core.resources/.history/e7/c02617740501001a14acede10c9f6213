@@ -1,0 +1,23 @@
+package com.cos.action.comment;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.cos.action.Action;
+
+public class CommentWriteAction implements Action{
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
+		String content = request.getParameter("content");
+		
+		System.out.println("userId : " + userId);
+		System.out.println("boardId : " + boardId);
+		System.out.println("content : " + content);
+		
+	}
+}
